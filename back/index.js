@@ -287,8 +287,6 @@ app.get('/file/:name', async (req, res) => {
     res.redirect('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
   }
 })
-
-
 app.get('/member/:user', async (req, res) => {
   // API設定，未登入看不到圖片
   if (req.session.user === undefined) {
