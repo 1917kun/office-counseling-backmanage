@@ -289,7 +289,7 @@ app.get('/file/:name', async (req, res) => {
 })
 
 
-app.get('/album/:user', async (req, res) => {
+app.get('/member/:user', async (req, res) => {
   // API設定，未登入看不到圖片
   if (req.session.user === undefined) {
     res.status(401)

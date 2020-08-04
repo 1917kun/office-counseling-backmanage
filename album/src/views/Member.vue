@@ -1,6 +1,6 @@
 <template lang="pug">
   #album
-    h1.text-center 我的相簿
+    h1.text-center 人員管理
     hr
     h2 檔案上傳
     br
@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  name: 'album',
+  name: 'member',
   data () {
     return {
       file: null,
@@ -139,7 +139,7 @@ export default {
     }
   },
   mounted () {
-    this.axios.get(process.env.VUE_APP_APIURL + '/album/' + this.user)
+    this.axios.get(process.env.VUE_APP_APIURL + '/member/' + this.user)
       .then(response => {
         this.images = response.data.result.map(d => {
           return {

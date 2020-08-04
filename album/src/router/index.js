@@ -12,7 +12,7 @@ const routes = [
     component: Home,
     meta: {
       login: false,
-      title: '線上相簿'
+      title: '後台首頁'
     }
   },
   {
@@ -21,7 +21,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "reg" */ '../views/Reg.vue'),
     meta: {
       login: false,
-      title: '線上相簿 | 註冊'
+      title: '後台 | 註冊'
     }
   },
   {
@@ -30,13 +30,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
       login: false,
-      title: '線上相簿 | 登入'
+      title: '後台 | 登入'
     }
   },
   {
-    path: '/album',
-    name: 'Album',
-    component: () => import(/* webpackChunkName: "album" */ '../views/Album.vue'),
+    path: '/member',
+    name: 'Member',
+    component: () => import(/* webpackChunkName: "member" */ '../views/Member.vue'),
     meta: {
       login: true
     }
@@ -56,9 +56,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-  document.title = (to.name !== 'Album') ? to.meta.title : store.state.user + ' 的相簿'
-  // if(to.name !== 'Album') document.title = to.meta.title
-  // else document.title = store.state.user + ' 的相簿'
+  document.title = (to.name !== 'Member') ? to.meta.title : store.state.user + ' 管理者'
 })
 
 export default router

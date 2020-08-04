@@ -33,6 +33,7 @@ export default {
     }
   },
   methods: {
+    // 帳號密碼如果小於四個字或大於二十的字state狀態為false 否則為true
     state (type) {
       if (type === 'account') {
         if (this.account.length < 4 || this.account.length > 20) {
@@ -48,13 +49,16 @@ export default {
         }
       }
     },
+    // 當按下登入後submit
     submit (event) {
       event.preventDefault()
+      // 擋格式錯誤
       if (this.account.length < 4 || this.account.length > 20) {
         alert('帳號格式不符')
       } else if (this.password.length < 4 || this.password.length > 20) {
         alert('密碼格式不符')
       }
+      // 將帳號密碼傳回 db
       this.axios.post(
         process.env.VUE_APP_APIURL + '/login',
         { account: this.account, password: this.password }
@@ -67,7 +71,7 @@ export default {
             // 呼叫 vuex 的登入
             this.$store.commit('login', this.account)
             // 跳到登入後的相簿頁
-            this.$router.push('album')
+            this.$router.push('member')
           } else {
             // 不是就顯示回來的 message
             alert(data.message)

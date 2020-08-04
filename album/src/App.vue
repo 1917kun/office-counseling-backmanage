@@ -2,13 +2,13 @@
   #app
     b-navbar(toggleable='lg' type='dark' variant='primary')
       b-container
-        b-navbar-brand(to='/') 相簿
+        b-navbar-brand(to='/') 傾心
         b-navbar-toggle(target='nav-collapse')
         b-collapse#nav-collapse(is-nav)
           b-navbar-nav.ml-auto
             b-nav-item(v-if="user.length === 0" to="/login") 登入
-            b-nav-item(v-else to="/album") 我的相簿
-            b-nav-item(v-if="user.length === 0" to="/reg") 註冊
+            b-nav-item(v-else to="/member") 人員管理
+            b-nav-item(v-if="user.length === 0") 傾心你好
             b-nav-item(v-else @click="logout") 登出
     b-container
       router-view
