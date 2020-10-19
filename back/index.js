@@ -18,7 +18,7 @@ const MongoStore = connectMongo(session)
 
 const app = express()
 
-app.get('/', (req, res) => {
+app.get('/file/:name', (req, res) => {
   req.pipe(request('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)).pipe(res)
 })
 app.use(bodyParser.json())
