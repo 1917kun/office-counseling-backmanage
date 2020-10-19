@@ -9,7 +9,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 import FTPStorage from 'multer-ftp'
 import fs from 'fs'
-
+import request from 'request'
 import db from './db.js'
 
 dotenv.config()
@@ -18,6 +18,9 @@ const MongoStore = connectMongo(session)
 
 const app = express()
 
+app.get('/', (req, res) => {
+  req.pipe(request('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)).pipe(res)
+})
 app.use(bodyParser.json())
 app.use(cors({
   origin (origin, callback) {
@@ -285,7 +288,7 @@ app.get('/file/:name', async (req, res) => {
       res.send({ success: false, message: '找不到圖片' })
     }
   } else {
-    res.redirect('https://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
+    res.redirect('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
   }
 })
 app.get('/member/:user', async (req, res) => {
