@@ -285,7 +285,7 @@ app.get('/file/:name', async (req, res) => {
       res.send({ success: false, message: '找不到圖片' })
     }
   } else {
-    res.redirect('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
+    res.redirect('https://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
   }
 })
 app.get('/member/:user', async (req, res) => {
